@@ -10,9 +10,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DruidUtils {
+
     private static DataSource dataSource;
 
-    static{
+    static {
         Properties properties = new Properties();
         InputStream inputStream = DruidUtils.class.getClassLoader().getResourceAsStream("druid.properties");
         try {

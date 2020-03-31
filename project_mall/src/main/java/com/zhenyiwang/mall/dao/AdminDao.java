@@ -1,6 +1,8 @@
 package com.zhenyiwang.mall.dao;
 
 import com.zhenyiwang.mall.bean.Admin;
+import com.zhenyiwang.mall.bean.ChangePwdInfo;
+import com.zhenyiwang.mall.bean.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public interface AdminDao {
 
-    Integer login(Admin admin);
+    Admin login(Admin admin);
 
     List<Admin> queryAllAdmins();
 
@@ -16,7 +18,17 @@ public interface AdminDao {
 
     void deleteAdmins(HttpServletRequest request, HttpServletResponse response);
 
-    void updateAdminss(Admin admin,int id);
+    void updateAdminss(Admin admin);
 
-    Admin getAdminsInfo(Admin admin,int id);
+    Admin getAdminsInfo(int id);
+
+    List<Admin> getSearchAdmins(Admin admin);
+
+    int changePwd(ChangePwdInfo changePwdInfo);
+
+    List<User> queryAllUser();
+
+    List<User> searchUser(String word);
+
+    void deleteUser(String id);
 }
