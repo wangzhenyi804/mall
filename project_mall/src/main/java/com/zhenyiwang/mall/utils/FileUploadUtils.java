@@ -27,7 +27,7 @@ public class FileUploadUtils {
         //最核心的一步
         try {
             //设置单个文件的上传大小限制 bytes  5M
-            upload.setFileSizeMax(100);
+            //upload.setFileSizeMax(100);
             //设置完了之后才解析
             List<FileItem> items = upload.parseRequest(request);
             //允许提交文件的最大容量
@@ -65,14 +65,14 @@ public class FileUploadUtils {
      */
     private static void processUploadedFile(FileItem fileItem, HttpServletRequest request, Map<String, Object> map) throws Exception {
         String uuid = UUID.randomUUID().toString();
-        System.out.println("uuid:" + uuid);
+        //System.out.println("uuid:" + uuid);
         //fieldName代表前端form表单提交的input的name属性
         String fieldName = fileItem.getFieldName();
         String fileName = fileItem.getName();
         // c3c87f85-ed2f-400e-8bcf-07aff3bc70cb-1.jpg
         fileName = uuid + "-" + fileName;
         String contentType = fileItem.getContentType();
-        System.out.println("UploadedFile:" + fieldName + "=" + fileName + "," + contentType);
+        //System.out.println("UploadedFile:" + fieldName + "=" + fileName + "," + contentType);
         int hashCode = fileName.hashCode();
         //8位数字  每位数字当做一个目录  8 9 4 5 e a f d / filename   10亿 16^8
         //                           8 9 3 ....
@@ -107,7 +107,7 @@ public class FileUploadUtils {
         //获取的是input的具体内容
         //这个时候我们发现获取的普通form表单数据中文存在乱码问题
         String value = fileItem.getString("UTF-8");
-        System.out.println("formField:" + fieldName + "=" + value);
+        //System.out.println("formField:" + fieldName + "=" + value);
         //封装到对象中 反射 BeanUtils
         map.put(fieldName, value);
     }

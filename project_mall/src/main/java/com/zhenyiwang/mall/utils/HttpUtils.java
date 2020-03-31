@@ -15,12 +15,13 @@ public class HttpUtils {
      */
     public static String requestBody(HttpServletRequest request) throws IOException {
         InputStream inputStream = request.getInputStream();
-        OutputStream outputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         byte[] bytes = new byte[1024];
         int len = 0;
         while((len = inputStream.read(bytes)) != -1){
             outputStream.write(bytes,0,len);
         }
-        return outputStream.toString();
+        //使用ByteArrayOutputStream的toString()方法，指定编码字符集
+        return outputStream.toString("utf-8");
     }
 }

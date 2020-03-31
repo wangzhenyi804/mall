@@ -183,9 +183,8 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public void deleteAdmins(HttpServletRequest request, HttpServletResponse response) {
+    public void deleteAdmins(Integer id) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
-        Integer id = Integer.valueOf(request.getQueryString().substring(3));
         try {
             runner.update("delete from mall_admin where id=?", id);
         } catch (SQLException e) {

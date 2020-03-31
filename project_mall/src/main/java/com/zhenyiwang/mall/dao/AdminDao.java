@@ -16,7 +16,7 @@ public interface AdminDao {
 
     int addAdmin(Admin admin);
 
-    void deleteAdmins(HttpServletRequest request, HttpServletResponse response);
+    void deleteAdmins(Integer id);
 
     void updateAdminss(Admin admin);
 

@@ -234,7 +234,8 @@ public class AdminServlet extends HttpServlet {
     private void deleteAdmins(HttpServletRequest request, HttpServletResponse response) throws IOException {
         AdminService adminService = new AdminServiceImpl();
         ResponseResult responseResult = new ResponseResult();
-        adminService.deleteAdmins(request, response);
+        Integer id = Integer.valueOf(request.getQueryString().substring(3));
+        adminService.deleteAdmins(id);
         responseResult.setCode(0);
         responseResult.setMessage("删除成功");
         response.getWriter().println(gson.toJson(responseResult));

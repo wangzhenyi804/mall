@@ -35,8 +35,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void deleteAdmins(HttpServletRequest request, HttpServletResponse response) {
-        adminDao.deleteAdmins(request,response);
+    public void deleteAdmins(Integer id) {
+        adminDao.deleteAdmins(id);
     }
 
     @Override
