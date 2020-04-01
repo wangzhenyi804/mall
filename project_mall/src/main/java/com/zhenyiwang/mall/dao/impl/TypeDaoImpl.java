@@ -16,6 +16,7 @@ public class TypeDaoImpl implements TypeDao {
         List<Type> typeList = null;
         try {
             typeList = runner.query("select * from mall_type", new BeanListHandler<>(Type.class));
+            //System.out.println(typeList);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -4,21 +4,26 @@ import java.util.List;
 
 public class Goods {
     private Integer id;
-    private String name;
-    private Double typeId;
+
     private String img;
-    private String describeGoods;
+
+    private String name;
+
+    private String desc;
+
     private Double price;
-    private Double stockNum;
+
+    private Integer typeId;
+
+    private Integer stockNum;
+
     private List<Spec> specList;
-
-    public String getDesc() {
-        return describeGoods;
-    }
-
-    public void setDesc(String desc) {
-        this.describeGoods = desc;
-    }
+    //"id": 534,
+    //			"img": "http://115.29.141.32:8084/static/image/1585744787830timg (1).jpg",
+    //			"name": "球鞋",
+    //			"desc": "black_red",
+    //			"typeId": 190,
+    //			"unitPrice": 0.0
 
     public List<Spec> getSpecList() {
         return specList;
@@ -60,20 +65,28 @@ public class Goods {
         this.price = price;
     }
 
-    public Double getTypeId() {
+    public Integer getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Double typeId) {
+    public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
 
-    public Double getStockNum() {
+    public Integer getStockNum() {
         return stockNum;
     }
 
-    public void setStockNum(Double stockNum) {
+    public void setStockNum(Integer stockNum) {
         this.stockNum = stockNum;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override
@@ -82,7 +95,7 @@ public class Goods {
                 "id=" + id +
                 ", img='" + img + '\'' +
                 ", name='" + name + '\'' +
-                ", desc='" + describeGoods + '\'' +
+                ", desc='" + desc + '\'' +
                 ", price=" + price +
                 ", typeId=" + typeId +
                 ", stockNum=" + stockNum +

@@ -1,5 +1,6 @@
 package com.zhenyiwang.mall.bean;
 
+//用来记录修改用户密码的信息
 public class ChangePwdInfo {
     //{"adminToken":"Joster","oldPwd":"Zxc54321&","newPwd":"Zxc123456&","confirmPwd":"Zxc123456&"}
     private String adminToken;

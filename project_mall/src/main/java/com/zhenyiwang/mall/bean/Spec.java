@@ -9,6 +9,16 @@ public class Spec {
 
     private Double unitPrice;
 
+    private Integer goodsId;
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
     public Integer getId() {
         return id;
     }
