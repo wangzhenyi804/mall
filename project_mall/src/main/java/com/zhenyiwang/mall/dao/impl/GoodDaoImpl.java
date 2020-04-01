@@ -176,7 +176,7 @@ public class GoodDaoImpl implements GoodsDao {
     public void updateGoods(Goods goods) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
         try {
-            runner.update("update mall_goods set name=? , img=? , desc=? , price=? , typeId=? , stockNum=? where id=?",
+            runner.update("update mall_goods set name=?,img=?,`desc`=?,price=?,typeId=?,stockNum=? where id=?",
                     goods.getName(),
                     goods.getImg(),
                     goods.getDesc(),

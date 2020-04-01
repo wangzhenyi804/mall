@@ -69,9 +69,15 @@ public class GoodsServlet extends HttpServlet {
      */
     private void addSpec(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String requestBody = HttpUtils.requestBody(request);
-        Spec spec = gson.fromJson(requestBody, Spec.class);
-        goodsService.addSpec(spec);
         ResponseResult result = new ResponseResult();
+        Spec spec = gson.fromJson(requestBody, Spec.class);
+        if(spec == null){
+            result.setMessage("请输入正确的规格信息");
+            response.getWriter().println(gson.toJson(result));
+            return;
+        }
+        goodsService.addSpec(spec);
+
         result.setCode(0);
         result.setData(spec);
         response.getWriter().println(gson.toJson(result));
