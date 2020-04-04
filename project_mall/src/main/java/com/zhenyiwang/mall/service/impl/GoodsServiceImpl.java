@@ -5,13 +5,13 @@ import com.zhenyiwang.mall.bean.GoodsInfo;
 import com.zhenyiwang.mall.bean.Spec;
 import com.zhenyiwang.mall.bean.SpecSign;
 import com.zhenyiwang.mall.dao.GoodsDao;
-import com.zhenyiwang.mall.dao.impl.GoodDaoImpl;
+import com.zhenyiwang.mall.dao.impl.GoodsDaoImpl;
 import com.zhenyiwang.mall.service.GoodsService;
 
 import java.util.List;
 
 public class GoodsServiceImpl implements GoodsService {
-    GoodsDao goodsDao = new GoodDaoImpl();
+    GoodsDao goodsDao = new GoodsDaoImpl();
 
     @Override
     public List<Goods> queryGoodsByType(String typeId) {

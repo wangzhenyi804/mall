@@ -10,8 +10,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -180,6 +178,18 @@ public class AdminDaoImpl implements AdminDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public  User queryUserById(Integer userId) {
+        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
+        User user = null;
+        try {
+            user = runner.query("select * from mall_user where id=?", new BeanHandler<>(User.class), userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override

@@ -6,8 +6,18 @@ public class User {
     private String nickname;
     private String pwd;
     private String recipient;
+    //收件人name
+    private String name;
     private String address;
     private String phone;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

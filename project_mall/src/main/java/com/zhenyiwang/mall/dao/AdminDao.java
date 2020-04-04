@@ -4,8 +4,6 @@ import com.zhenyiwang.mall.bean.Admin;
 import com.zhenyiwang.mall.bean.ChangePwdInfo;
 import com.zhenyiwang.mall.bean.User;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface AdminDao {
@@ -31,4 +29,7 @@ public interface AdminDao {
     List<User> searchUser(String word);
 
     void deleteUser(String id);
+
+
+    User queryUserById(Integer userId);
 }

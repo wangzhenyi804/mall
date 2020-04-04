@@ -9,6 +9,7 @@ public class Spec {
 
     private Double unitPrice;
 
+    //商品id
     private Integer goodsId;
 
     public Integer getGoodsId() {
@@ -58,6 +59,7 @@ public class Spec {
                 ", specName='" + specName + '\'' +
                 ", stockNum=" + stockNum +
                 ", unitPrice=" + unitPrice +
+                ", goodsId=" + goodsId +
                 '}';
     }
 }

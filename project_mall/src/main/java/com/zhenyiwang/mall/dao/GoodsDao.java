@@ -4,6 +4,7 @@ import com.zhenyiwang.mall.bean.Goods;
 import com.zhenyiwang.mall.bean.Spec;
 import com.zhenyiwang.mall.bean.SpecSign;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface GoodsDao {
@@ -28,4 +29,9 @@ public interface GoodsDao {
    void addSpec(Spec spec);
 
     void updateGoods(Goods goods);
+    Goods queryGoodsName(Integer goodsId) throws SQLException;
+
+    List<Spec> queryAllSpecs(Spec spec);
+
+    Spec querySpecById(Integer goodsDetailId);
 }
