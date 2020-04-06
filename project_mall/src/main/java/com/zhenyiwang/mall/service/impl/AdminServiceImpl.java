@@ -1,8 +1,7 @@
 package com.zhenyiwang.mall.service.impl;
 
-import com.zhenyiwang.mall.bean.Admin;
-import com.zhenyiwang.mall.bean.ChangePwdInfo;
-import com.zhenyiwang.mall.bean.User;
+import com.zhenyiwang.mall.bean.admin.Admin;
+import com.zhenyiwang.mall.bean.admin.ChangePwdInfo;
 import com.zhenyiwang.mall.dao.AdminDao;
 import com.zhenyiwang.mall.dao.impl.AdminDaoImpl;
 import com.zhenyiwang.mall.service.AdminService;
@@ -10,8 +9,6 @@ import com.zhenyiwang.mall.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -73,20 +70,5 @@ public class AdminServiceImpl implements AdminService {
             return 1;
         }
         return adminDao.changePwd(changePwdInfo);
-    }
-
-    @Override
-    public List<User> queryAllUser() {
-        return adminDao.queryAllUser();
-    }
-
-    @Override
-    public List<User> searchUser(String word) {
-        return adminDao.searchUser(word);
-    }
-
-    @Override
-    public void deleteUser(String id) {
-        adminDao.deleteUser(id);
     }
 }

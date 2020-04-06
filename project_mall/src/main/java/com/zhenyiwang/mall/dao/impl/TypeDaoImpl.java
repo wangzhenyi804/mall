@@ -1,6 +1,6 @@
 package com.zhenyiwang.mall.dao.impl;
 
-import com.zhenyiwang.mall.bean.Type;
+import com.zhenyiwang.mall.bean.admin.Type;
 import com.zhenyiwang.mall.dao.TypeDao;
 import com.zhenyiwang.mall.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;

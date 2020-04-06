@@ -1,6 +1,6 @@
 package com.zhenyiwang.mall.service.impl;
 
-import com.zhenyiwang.mall.bean.Type;
+import com.zhenyiwang.mall.bean.admin.Type;
 import com.zhenyiwang.mall.dao.TypeDao;
 import com.zhenyiwang.mall.dao.impl.TypeDaoImpl;
 import com.zhenyiwang.mall.service.TypeService;

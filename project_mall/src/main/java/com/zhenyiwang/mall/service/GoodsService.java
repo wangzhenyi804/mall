@@ -1,9 +1,10 @@
 package com.zhenyiwang.mall.service;
 
-import com.zhenyiwang.mall.bean.Goods;
-import com.zhenyiwang.mall.bean.GoodsInfo;
-import com.zhenyiwang.mall.bean.Spec;
-import com.zhenyiwang.mall.bean.SpecSign;
+import com.zhenyiwang.mall.bean.admin.Goods;
+import com.zhenyiwang.mall.bean.admin.GoodsInfo;
+import com.zhenyiwang.mall.bean.admin.Spec;
+import com.zhenyiwang.mall.bean.admin.SpecSign;
+import com.zhenyiwang.mall.controller.client.Comment;
 
 import java.util.List;
 
@@ -21,4 +22,11 @@ public interface GoodsService {
     void addSpec(Spec spec);
 
     void updateGoods(Goods goods);
+
+    List<Goods> searchGoods(String keyword);
+
+    List<Comment> getGoodsComment(String goodsId);
+
+
+    double getCommentRate(String goodsId);
 }

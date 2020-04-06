@@ -1,9 +1,10 @@
 package com.zhenyiwang.mall.service.impl;
 
-import com.zhenyiwang.mall.bean.Goods;
-import com.zhenyiwang.mall.bean.GoodsInfo;
-import com.zhenyiwang.mall.bean.Spec;
-import com.zhenyiwang.mall.bean.SpecSign;
+import com.zhenyiwang.mall.bean.admin.Goods;
+import com.zhenyiwang.mall.bean.admin.GoodsInfo;
+import com.zhenyiwang.mall.bean.admin.Spec;
+import com.zhenyiwang.mall.bean.admin.SpecSign;
+import com.zhenyiwang.mall.controller.client.Comment;
 import com.zhenyiwang.mall.dao.GoodsDao;
 import com.zhenyiwang.mall.dao.impl.GoodsDaoImpl;
 import com.zhenyiwang.mall.service.GoodsService;
@@ -52,6 +53,12 @@ public class GoodsServiceImpl implements GoodsService {
         goodsDao.deleteGoods(id);
     }
 
+    /**
+     * 查询商品详情
+     *
+     * @param id
+     * @return
+     */
     @Override
     public GoodsInfo queryGoodsInfo(String id) {
         GoodsInfo goodsInfo = new GoodsInfo();
@@ -74,11 +81,21 @@ public class GoodsServiceImpl implements GoodsService {
         goodsDao.deleteSpec(specSign);
     }
 
+    /**
+     * 增加商品规格
+     *
+     * @param spec
+     */
     @Override
     public void addSpec(Spec spec) {
         goodsDao.addSpec(spec);
     }
 
+    /**
+     * 编辑商品
+     *
+     * @param goods
+     */
     @Override
     public void updateGoods(Goods goods) {
         List<Spec> specList = goods.getSpecList();
@@ -95,6 +112,42 @@ public class GoodsServiceImpl implements GoodsService {
         goods.setPrice(price);
         goodsDao.updateGoods(goods);
 
+    }
+
+    /**
+     * 根据关键字查询商品
+     *
+     * @param keyword
+     * @return
+     */
+    @Override
+    public List<Goods> searchGoods(String keyword) {
+        return goodsDao.searchGoods(keyword);
+    }
+
+    /**
+     * 获取商品评价
+     *
+     * @param goodsId
+     * @return
+     */
+    @Override
+    public List<Comment> getGoodsComment(String goodsId) {
+        return goodsDao.getGoodsComment(goodsId);
+    }
+
+    /**
+     * 计算好评率 rate = perfect/total
+     *
+     * @param goodsId
+     * @return
+     */
+    @Override
+    public double getCommentRate(String goodsId) {
+        Integer total = goodsDao.queryTotalComment(Integer.parseInt(goodsId));
+        Integer perfect = goodsDao.queryPerfectCommentNum(Integer.parseInt(goodsId));
+        double rate = perfect / total;
+        return rate;
     }
 
 }

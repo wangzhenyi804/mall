@@ -1,9 +1,9 @@
 package com.zhenyiwang.mall.dao;
 
-import com.zhenyiwang.mall.bean.ChangeOrderInfo;
-import com.zhenyiwang.mall.bean.EditOrderInfo;
-import com.zhenyiwang.mall.bean.Order;
-import com.zhenyiwang.mall.bean.State;
+import com.zhenyiwang.mall.bean.admin.ChangeOrderInfo;
+import com.zhenyiwang.mall.bean.admin.EditOrderInfo;
+import com.zhenyiwang.mall.bean.admin.Order;
+import com.zhenyiwang.mall.bean.admin.State;
 
 import java.util.List;
 

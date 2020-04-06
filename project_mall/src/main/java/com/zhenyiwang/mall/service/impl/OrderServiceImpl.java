@@ -1,13 +1,13 @@
 package com.zhenyiwang.mall.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
-import com.zhenyiwang.mall.bean.*;
-import com.zhenyiwang.mall.dao.AdminDao;
+import com.zhenyiwang.mall.bean.admin.*;
 import com.zhenyiwang.mall.dao.GoodsDao;
 import com.zhenyiwang.mall.dao.OrderDao;
-import com.zhenyiwang.mall.dao.impl.AdminDaoImpl;
+import com.zhenyiwang.mall.dao.UserDao;
 import com.zhenyiwang.mall.dao.impl.GoodsDaoImpl;
 import com.zhenyiwang.mall.dao.impl.OrderDaoImpl;
+import com.zhenyiwang.mall.dao.impl.UserDaoImpl;
 import com.zhenyiwang.mall.service.OrderService;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class OrderServiceImpl implements OrderService {
     OrderDao orderDao = new OrderDaoImpl();
-    AdminDao userDao = new AdminDaoImpl();
+    UserDao userDao = new UserDaoImpl();
     GoodsDao goodsDao = new GoodsDaoImpl();
 
     /**

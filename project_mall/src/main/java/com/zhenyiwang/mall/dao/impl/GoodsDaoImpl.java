@@ -1,8 +1,9 @@
 package com.zhenyiwang.mall.dao.impl;
 
-import com.zhenyiwang.mall.bean.Goods;
-import com.zhenyiwang.mall.bean.Spec;
-import com.zhenyiwang.mall.bean.SpecSign;
+import com.zhenyiwang.mall.bean.admin.Goods;
+import com.zhenyiwang.mall.bean.admin.Spec;
+import com.zhenyiwang.mall.bean.admin.SpecSign;
+import com.zhenyiwang.mall.controller.client.Comment;
 import com.zhenyiwang.mall.dao.GoodsDao;
 import com.zhenyiwang.mall.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -15,10 +16,26 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class GoodsDaoImpl implements GoodsDao {
+    /**
+     * 通过商品类型id查询该类的所有商品
+     *
+     * @param typeId
+     * @return
+     */
     @Override
     public List<Goods> queryGoodsByType(String typeId) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
         List<Goods> goodsList = null;
+        if (-1 == Integer.parseInt(typeId)) {
+            try {
+                goodsList = runner.query("select * from mall_goods ", new BeanListHandler<>(Goods.class));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return goodsList;
+        }
+
+
         try {
             goodsList = runner.query("select * from mall_goods where typeId = ?",
                     new BeanListHandler<>(Goods.class),
@@ -91,6 +108,11 @@ public class GoodsDaoImpl implements GoodsDao {
         }
     }
 
+    /**
+     * 删除商品
+     *
+     * @param id
+     */
     @Override
     public void deleteGoods(String id) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -101,18 +123,30 @@ public class GoodsDaoImpl implements GoodsDao {
         }
     }
 
+    /**
+     * 查询商品的所有规格
+     *
+     * @param id
+     * @return
+     */
     @Override
     public List<Spec> queryGoodsSpec(String id) {
         List<Spec> specs = null;
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
         try {
-            specs = runner.query("select * from spec where goods_id=?", new BeanListHandler<>(Spec.class), id);
+            specs = runner.query("select * from spec where goodsId=?", new BeanListHandler<>(Spec.class), id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return specs;
     }
 
+    /**
+     * 通过id来查询商品
+     *
+     * @param id
+     * @return
+     */
     @Override
     public Goods queryGoods(String id) {
         Goods goods = null;
@@ -126,6 +160,11 @@ public class GoodsDaoImpl implements GoodsDao {
         return goods;
     }
 
+    /**
+     * 删除商品的一个规格
+     *
+     * @param specSign
+     */
     @Override
     public void deleteSpec(SpecSign specSign) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -138,6 +177,12 @@ public class GoodsDaoImpl implements GoodsDao {
         }
     }
 
+    /**
+     * 通过商品id和规格的名称来查询该商品规格的信息
+     *
+     * @param specSign
+     * @return
+     */
     @Override
     public Spec querySpec(SpecSign specSign) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -172,6 +217,11 @@ public class GoodsDaoImpl implements GoodsDao {
         }
     }
 
+    /**
+     * 编辑商品
+     *
+     * @param goods
+     */
     @Override
     public void updateGoods(Goods goods) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -189,6 +239,12 @@ public class GoodsDaoImpl implements GoodsDao {
         }
     }
 
+    /**
+     * 通过id查询商品的名称
+     *
+     * @param goodsId
+     * @return
+     */
     @Override
     public Goods queryGoodsName(Integer goodsId) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -242,4 +298,75 @@ public class GoodsDaoImpl implements GoodsDao {
         return spec;
     }
 
+    /**
+     * 通过商品名称关键字查询商品
+     *
+     * @param keyword
+     * @return
+     */
+    @Override
+    public List<Goods> searchGoods(String keyword) {
+        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
+        List<Goods> goodsList = null;
+        try {
+            goodsList = runner.query("select * from mall_goods where name like ?", new BeanListHandler<>(Goods.class), "%" + keyword + "%");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return goodsList;
+    }
+
+    /**
+     * 获取商品评论
+     *
+     * @param goodsId
+     * @return
+     */
+    @Override
+    public List<Comment> getGoodsComment(String goodsId) {
+        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
+        List<Comment> comments = null;
+        try {
+            comments = runner.query("select id,score,specName,`comment`,`time`,userId from mall_comment where goodsId = ?", new BeanListHandler<>(Comment.class), goodsId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return comments;
+    }
+
+    /**
+     * 获取总评价数
+     *
+     * @return
+     */
+    @Override
+    public Integer queryTotalComment(Integer goodsId) {
+        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
+        Integer total = 0;
+        try {
+            total = runner.query("select count(*) from mall_comment where goodsId = ?",new ScalarHandler<Integer>(),goodsId);
+            System.out.println(total);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total;
+    }
+
+    /**
+     * 获取好评数
+     *
+     * @return
+     */
+    @Override
+    public Integer queryPerfectCommentNum(Integer goodsId) {
+        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
+        Integer perfect = 0;
+        try {
+            perfect = runner.query("select count(*) from mall_comment where score = 100.0 and goodsId = ?",new ScalarHandler<Integer>(),goodsId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return perfect;
+    }
 }

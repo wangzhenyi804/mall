@@ -1,9 +1,9 @@
 package com.zhenyiwang.mall.dao.impl;
 
-import com.zhenyiwang.mall.bean.ChangeOrderInfo;
-import com.zhenyiwang.mall.bean.EditOrderInfo;
-import com.zhenyiwang.mall.bean.Order;
-import com.zhenyiwang.mall.bean.State;
+import com.zhenyiwang.mall.bean.admin.ChangeOrderInfo;
+import com.zhenyiwang.mall.bean.admin.EditOrderInfo;
+import com.zhenyiwang.mall.bean.admin.Order;
+import com.zhenyiwang.mall.bean.admin.State;
 import com.zhenyiwang.mall.dao.OrderDao;
 import com.zhenyiwang.mall.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -17,6 +17,13 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao {
 
 
+    /**
+     * 获取分页订单
+     *
+     * @param sql
+     * @param conditions
+     * @return
+     */
     @Override
     public List<Order> ordersByPage(String sql, List<Object> conditions) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -29,6 +36,13 @@ public class OrderDaoImpl implements OrderDao {
         return orders;
     }
 
+    /**
+     * 获取订单总数
+     *
+     * @param sql
+     * @param conditions
+     * @return
+     */
     @Override
     public int getTotal(String sql, List<Object> conditions) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -41,6 +55,12 @@ public class OrderDaoImpl implements OrderDao {
         return total.intValue();
     }
 
+    /**
+     * 查询编辑订单页面的订单信息
+     *
+     * @param orderId 订单号
+     * @return
+     */
     @Override
     public EditOrderInfo getEditOrderInfo(int orderId) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -95,7 +115,7 @@ public class OrderDaoImpl implements OrderDao {
     public void deleteOrder(String id) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
         try {
-            runner.update("delete from mall_order where id = ? ",id);
+            runner.update("delete from mall_order where id = ? ", id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

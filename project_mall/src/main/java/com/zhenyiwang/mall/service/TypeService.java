@@ -1,6 +1,6 @@
 package com.zhenyiwang.mall.service;
 
-import com.zhenyiwang.mall.bean.Type;
+import com.zhenyiwang.mall.bean.admin.Type;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
 package com.zhenyiwang.mall.dao.impl;
 
 import com.alibaba.druid.util.StringUtils;
-import com.zhenyiwang.mall.bean.Admin;
-import com.zhenyiwang.mall.bean.ChangePwdInfo;
-import com.zhenyiwang.mall.bean.User;
+import com.zhenyiwang.mall.bean.admin.Admin;
+import com.zhenyiwang.mall.bean.admin.ChangePwdInfo;
 import com.zhenyiwang.mall.dao.AdminDao;
 import com.zhenyiwang.mall.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -16,7 +15,12 @@ import java.util.List;
 
 public class AdminDaoImpl implements AdminDao {
 
-    //查询管理员信息这一块可以提取出写一个方法
+    /**
+     * 管理员登陆
+     *
+     * @param admin
+     * @return
+     */
     @Override
     public Admin login(Admin admin) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -34,6 +38,11 @@ public class AdminDaoImpl implements AdminDao {
         return queryAdmin;
     }
 
+    /**
+     * 查询所有管理员
+     *
+     * @return
+     */
     @Override
     public List<Admin> queryAllAdmins() {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -46,6 +55,12 @@ public class AdminDaoImpl implements AdminDao {
         return adminList;
     }
 
+    /**
+     * 添加管理员
+     *
+     * @param admin
+     * @return
+     */
     @Override
     public int addAdmin(Admin admin) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -63,6 +78,11 @@ public class AdminDaoImpl implements AdminDao {
     }
 
 
+    /**
+     * 编辑管理员
+     *
+     * @param admin
+     */
     @Override
     public void updateAdminss(Admin admin) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -79,6 +99,12 @@ public class AdminDaoImpl implements AdminDao {
         }
     }
 
+    /**
+     * 由id获取管理员信息
+     *
+     * @param id
+     * @return
+     */
     @Override
     public Admin getAdminsInfo(int id) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
@@ -91,6 +117,12 @@ public class AdminDaoImpl implements AdminDao {
         return admin;
     }
 
+    /**
+     * 按条件查询管理员
+     *
+     * @param admin
+     * @return
+     */
     @Override
     public List<Admin> getSearchAdmins(Admin admin) {
         String baseSql = "select * from mall_admin where 1 = 1 ";
@@ -140,58 +172,12 @@ public class AdminDaoImpl implements AdminDao {
         return 0;
     }
 
-    @Override
-    public List<User> queryAllUser() {
-        List<User> userList = null;
-        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
-        try {
-            userList = runner.query("select * from mall_user",new BeanListHandler<>(User.class));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return userList;
-    }
 
-    @Override
-    public List<User> searchUser(String word) {
-        List<User> userList = null;
-        List<Object> params = new ArrayList<>();
-        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
-        String baseSql = "select * from mall_user where 1 = 1";
-        if (!StringUtils.isEmpty(word)) {
-            baseSql = baseSql + " and nickname like ?";
-            params.add("%" + word + "%");
-        }
-        try {
-            userList = runner.query(baseSql,new BeanListHandler<>(User.class),params.toArray());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return userList;
-    }
-
-    @Override
-    public void deleteUser(String id) {
-        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
-        try {
-            runner.update("delete from mall_user where id=?");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public  User queryUserById(Integer userId) {
-        QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());
-        User user = null;
-        try {
-            user = runner.query("select * from mall_user where id=?", new BeanHandler<>(User.class), userId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
-    }
-
+    /**
+     * 删除管理员
+     *
+     * @param id
+     */
     @Override
     public void deleteAdmins(Integer id) {
         QueryRunner runner = new QueryRunner(DruidUtils.getDataSource());

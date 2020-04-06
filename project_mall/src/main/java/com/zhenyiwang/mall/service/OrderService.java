@@ -1,8 +1,8 @@
 package com.zhenyiwang.mall.service;
 
-import com.zhenyiwang.mall.bean.ChangeOrderInfo;
-import com.zhenyiwang.mall.bean.EditOrderInfo;
-import com.zhenyiwang.mall.bean.OrderConditions;
+import com.zhenyiwang.mall.bean.admin.ChangeOrderInfo;
+import com.zhenyiwang.mall.bean.admin.EditOrderInfo;
+import com.zhenyiwang.mall.bean.admin.OrderConditions;
 
 import java.util.Map;
 

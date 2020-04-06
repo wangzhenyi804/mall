@@ -1,10 +1,10 @@
 package com.zhenyiwang.mall.dao;
 
-import com.zhenyiwang.mall.bean.Goods;
-import com.zhenyiwang.mall.bean.Spec;
-import com.zhenyiwang.mall.bean.SpecSign;
+import com.zhenyiwang.mall.bean.admin.Goods;
+import com.zhenyiwang.mall.bean.admin.Spec;
+import com.zhenyiwang.mall.bean.admin.SpecSign;
+import com.zhenyiwang.mall.controller.client.Comment;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface GoodsDao {
@@ -29,9 +29,18 @@ public interface GoodsDao {
    void addSpec(Spec spec);
 
     void updateGoods(Goods goods);
-    Goods queryGoodsName(Integer goodsId) throws SQLException;
+    Goods queryGoodsName(Integer goodsId);
 
     List<Spec> queryAllSpecs(Spec spec);
 
     Spec querySpecById(Integer goodsDetailId);
+
+    List<Goods> searchGoods(String keyword);
+
+    List<Comment> getGoodsComment(String goodsId);
+
+    Integer queryTotalComment(Integer goodsId);
+
+    Integer queryPerfectCommentNum(Integer goodsId);
+
 }
